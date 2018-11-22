@@ -1,7 +1,6 @@
 package fraction;
 
 import java.util.Scanner;
-import fraction.Fraction;
 
 /**
  * This is a command line program that performs basic math operations on two Fractions.
