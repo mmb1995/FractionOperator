@@ -162,7 +162,7 @@ public class Fraction {
             int remainder = this.numerator % this.denominator;
             
             // Fix weird quirk to prevent two negatives from being present in toString representation
-            int denom = wholeNumber > 0 ? this.denominator : this.denominator * -1;
+            int denom = wholeNumber >= 0 ? this.denominator : this.denominator * -1;
             
             builder.append(wholeNumber);
             builder.append("_");

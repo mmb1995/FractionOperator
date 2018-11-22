@@ -1,6 +1,7 @@
 package fraction;
 
 import java.util.Scanner;
+import fraction.Fraction;
 
 /**
  * This is a command line program that performs basic math operations on two Fractions.
@@ -9,7 +10,6 @@ import java.util.Scanner;
  * @author mmb95
  *
  */
-
 public class Main {
     
     /**
@@ -45,7 +45,6 @@ public class Main {
             // User passed in an incorrect number of arguments
             handleInvalidArguments(input);
         }
-        System.exit(0);
 
     }
     
@@ -132,53 +131,62 @@ public class Main {
      * @param input a Scanner to read in user input
      */
     public static void handleUserInput(Scanner input) {
-        Fraction firstFraction;
-        boolean valid = false;
-        do {
-            // prompt the user for the first fraction
-            System.out.print("Please enter the value for the first fraction in one of the following"
-                    + " formats two integers (x/y), an integer x, or a mixed number (a_x/y): ");
-            String firstFractionString = input.nextLine().trim();
+        while(true) {
+            Fraction firstFraction;
+            boolean valid = false;
+            do {
+                // prompt the user for the first fraction
+                System.out.print("Please enter the value for the first fraction in one of the following"
+                        + " formats two integers (x/y), an integer x, or a mixed number (a_x/y): ");
+                String firstFractionString = input.nextLine().trim();
+                
+                firstFraction = getFraction(firstFractionString);
+                if (firstFraction != null) {
+                    valid = true;
+                }                
+            } while(!valid);
             
-            firstFraction = getFraction(firstFractionString);
-            if (firstFraction != null) {
-                valid = true;
-            }                
-        } while(!valid);
-        
-        Operator operator = null;
-        valid = false;
-        do {
-            // Prompt the user for an operator
-            System.out.print("Please select an operator (+, -, *, /): ");
-            String operatorString = input.nextLine().trim();
-            if (isValidOperator(operatorString)) {
-                // The operator is valid
-                valid = true;
-                operator = getOperator(operatorString);
+            Operator operator = null;
+            valid = false;
+            do {
+                // Prompt the user for an operator
+                System.out.print("Please select an operator (+, -, *, /): ");
+                String operatorString = input.nextLine().trim();
+                if (isValidOperator(operatorString)) {
+                    // The operator is valid
+                    valid = true;
+                    operator = getOperator(operatorString);
+                }
+                
+            } while(!valid);
+            
+            Fraction secondFraction;
+            valid = false;
+            do {
+                // Prompt the user for the second fraction
+                System.out.print("Please enter the value for the second fraction in one of the following"
+                        + " formats two integers (x/y), an integer x, or a mixed number (a_x/y): ");
+                String secondFractionString = input.nextLine().trim();
+                
+                secondFraction = getFraction(secondFractionString);
+                
+                if(secondFraction != null) {
+                    valid = true;
+                }
+            
+            } while (!valid);
+             
+            // Perform the operation and print out the result
+            Fraction result = performOperation(firstFraction, secondFraction, operator);
+            printResult(result);
+            
+            // See if the user wants to continue
+            System.out.print("Would you like to continue? (y to continue, any other letter to exit): ");
+            if (!input.nextLine().trim().equalsIgnoreCase("y")) {
+                System.out.println("Thank you, ending session.");
+                System.exit(0);
             }
-            
-        } while(!valid);
-        
-        Fraction secondFraction;
-        valid = false;
-        do {
-            // Prompt the user for the second fraction
-            System.out.print("Please enter the value for the second fraction in one of the following"
-                    + " formats two integers (x/y), an integer x, or a mixed number (a_x/y): ");
-            String secondFractionString = input.nextLine().trim();
-            
-            secondFraction = getFraction(secondFractionString);
-            
-            if(secondFraction != null) {
-                valid = true;
-            }
-        
-        } while (!valid);
-         
-        // Perform the operation and print out the result
-        Fraction result = performOperation(firstFraction, secondFraction, operator);
-        printResult(result);
+        }
     }
     
     
