@@ -154,6 +154,9 @@ public class Main {
             if (!input.nextLine().trim().equalsIgnoreCase("y")) {
                 quitProgram(input);
             }
+            
+            // Adds seperation between text
+            System.out.println("");
         }
     }  
     
