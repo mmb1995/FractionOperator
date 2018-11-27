@@ -17,8 +17,7 @@ public class EquationManipulator {
         
         private Operator(String operation) {
             this.operation = operation;
-        }
-        
+        }   
     }
     
     /**
