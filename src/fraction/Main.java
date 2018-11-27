@@ -6,8 +6,8 @@ import fraction.Fraction;
 /**
  * This is a command line program that performs basic math operations on two Fractions.
  * The user can either pass in arguments from the command line or manually enter arguments when prompted.
- * A valid equation consists of two fractions in one the following formats, an Integer (x), a fraction (x/y), or a mixed number (a_x/y),
- * and an operator (+, -, *, /).
+ * A valid equation consists of two fractions in one of the following formats: an Integer (x),
+ * a fraction (x/y), or a mixed number (a_x/y), and an operator (+, -, *, /).
  * Note: When passing in arguments from the command line if you want to perform multiplication you need 
  * to enter the operator wrapped in quotes as "*", otherwise the shell won't interpret the symbol correctly
  * @author mmb1995
