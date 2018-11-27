@@ -8,7 +8,8 @@ import fraction.Fraction;
  * The user can either pass in arguments from the command line or manually enter arguments when prompted.
  * A valid equation consists of two fractions in one the following formats, an Integer (x), a fraction (x/y), or a mixed number (a_x/y),
  * and an operator (+, -, *, /).
- * 
+ * Note: When passing in arguments from the command line if you want to perform multiplication you need 
+ * to enter the operator wrapped in quotes as "*", otherwise the shell won't interpret the symbol correctly
  * @author mmb1995
  *
  */
@@ -58,7 +59,6 @@ public class Main {
      * @param manipulator
      */
     private static void checkPassedInArguments(String[] args, EquationManipulator manipulator) {
-        
         // Convert arguments to a String
         StringBuilder builder = new StringBuilder();
         for (String argument: args) {
@@ -117,7 +117,6 @@ public class Main {
         // returns an array containing the valid equation
         return equation;
     }
-    
     
     /**
      * This is used when arguments are passed in from the command line
