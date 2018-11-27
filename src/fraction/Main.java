@@ -65,7 +65,6 @@ public class Main {
             builder.append(argument + " ");
         }
         
-        System.out.println("Command line equation: " + builder.toString());
         // check if equation is valid
         String[] equation = manipulator.getEquation(builder.toString());
         if (equation.length == 0) {
