@@ -15,9 +15,7 @@ import fraction.Fraction;
  */
 public class Main {
     
-
     public static void main(String[] args) {
-        
         // Gets an EquationManipulator that will handle the operation logic
         EquationManipulator manipulator = new EquationManipulator();
         
@@ -143,8 +141,8 @@ public class Main {
      */
     public static void handleUserInput(EquationManipulator manipulator) {
         Scanner input = new Scanner(System.in);
+        
         while(true) {
-            
             // Gets the arguments from the equation
             String[] equation = buildEquation(manipulator);
             

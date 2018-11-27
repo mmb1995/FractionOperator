@@ -17,8 +17,7 @@ public class EquationManipulator {
         
         private Operator(String operation) {
             this.operation = operation;
-        }
-        
+        }   
     }
     
     /**
@@ -28,9 +27,7 @@ public class EquationManipulator {
      * @return
      */
     public Fraction getFraction(String fractionString) {
-        
         if (isMixedNumber(fractionString)) {
-            
             // Builds a mixed number into an improper fraction
             int underScoreIndex = fractionString.indexOf("_");
             int wholeNumber = Integer.parseInt(fractionString.substring(0,underScoreIndex));
@@ -42,21 +39,15 @@ public class EquationManipulator {
             Fraction rest = buildFraction(fractionString.substring(underScoreIndex + 1));
             
             // Add the Fractions together and return the result
-            return convertedFraction.add(rest);
-            
+            return convertedFraction.add(rest);    
         } else if (isFraction(fractionString)) {
-            
             // builds the fraction
-            return buildFraction(fractionString);
-            
+            return buildFraction(fractionString); 
         } else if (isNumber(fractionString)) {
-            
             // Fraction is a whole number
             int wholeNumber = Integer.parseInt(fractionString);
-            return new Fraction(wholeNumber);  
-            
+            return new Fraction(wholeNumber);      
         } else {
-            
             // The input could not be made into a fraction
             return null;
         }      
@@ -102,7 +93,6 @@ public class EquationManipulator {
      * @return the Fraction that represents the result of the operation
      */
     public Fraction performOperation(Fraction first, Fraction second, String operator) {
-        
         // Performs the given operation
         switch(getOperator(operator)) {
             case ADD:
@@ -114,8 +104,7 @@ public class EquationManipulator {
             case DIVIDE:
                 return first.divide(second);
             default:
-                return null;
-            
+                return null;          
         }
     }
     
@@ -167,8 +156,7 @@ public class EquationManipulator {
      * @param input
      * @return true/false
      */
-    private boolean isNumber(String input) {
-        
+    private boolean isNumber(String input) { 
         // Ternary expression that basically is just checking if the number could potentially be negative
         int index = input.charAt(0) == '-' ? 1 : 0;
 
@@ -187,22 +175,17 @@ public class EquationManipulator {
      */
     private boolean isFraction(String input) {
         int slashIndex = input.indexOf("/");
-        
         if (slashIndex != -1) {
-            
             if (input.charAt(0) == '-') {
-                
                 // handles negative numbers
                 return (isNumber(input.substring(1, slashIndex)) 
                         && isNumber(input.substring(slashIndex + 1, input.length())));
             } else {
-                
                 // Check that the fraction contains two valid numbers
                 return (isNumber(input.substring(0, slashIndex)) && 
                         isNumber(input.substring(slashIndex + 1, input.length())));
             }
         } else {
-            
             // not a fraction
             return false;
         }
@@ -215,12 +198,9 @@ public class EquationManipulator {
      */
     private boolean isMixedNumber(String input) {
         int underScoreIndex = input.indexOf("_");
-        
         if (underScoreIndex != -1) {
-            
             // check for valid mixed number
             if (input.charAt(0) == '-') {
-                
                 // handles negative numbers
                 return (isNumber(input.substring(1, underScoreIndex)) &&
                         isFraction(input.substring(underScoreIndex + 1, input.length())));
@@ -228,8 +208,7 @@ public class EquationManipulator {
                 return (isNumber(input.substring(0,  underScoreIndex)) 
                         && isFraction(input.substring(underScoreIndex + 1, input.length())));
             }
-        }
-        
+        } 
         return false;
     }
 }
